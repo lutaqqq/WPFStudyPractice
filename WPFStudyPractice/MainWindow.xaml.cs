@@ -23,7 +23,7 @@ namespace WPFStudyPractice
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.Navigate(new Agents());
+            MainFrame.Navigate(new HotelPage());
             Manager.MainFrame = MainFrame;
         }
 

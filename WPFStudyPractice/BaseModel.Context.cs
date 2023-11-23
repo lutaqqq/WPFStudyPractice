@@ -13,22 +13,22 @@ namespace WPFStudyPractice
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TourBaseEntities : DbContext
+    public partial class LilChaChaEntities : DbContext
     {
-        private static TourBaseEntities _context;
-        public TourBaseEntities()
-            : base("name=TourBaseEntities1")
+        private static LilChaChaEntities _context;
+        public LilChaChaEntities()
+            : base("name=LilChaChaEntities")
         {
         }
-        public static TourBaseEntities GetContext()
+        public static LilChaChaEntities GetContext()
         {
             if (_context == null)
             {
-                _context = new TourBaseEntities();
+                _context = new LilChaChaEntities();
             }
             return _context;
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

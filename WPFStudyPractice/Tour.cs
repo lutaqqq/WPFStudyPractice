@@ -25,9 +25,9 @@ namespace WPFStudyPractice
         public int TicketsCount { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public string ImagePreveiw { get; set; }
+        public byte[] ImagePreveiw { get; set; }
         public decimal Price { get; set; }
-        public decimal IsActual { get; set; }
+        public bool IsActual { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Hotel> Hotel { get; set; }

@@ -23,7 +23,7 @@ namespace WPFStudyPractice
         public HotelPage()
         {
             InitializeComponent();
-            DGridHotels.ItemsSource = TourBaseEntities.GetContext().Hotel.ToList();
+            DGridHotels.ItemsSource = LilChaChaEntities.GetContext().Hotel.ToList();
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -46,11 +46,11 @@ namespace WPFStudyPractice
             {
                 try
                 {
-                    TourBaseEntities.GetContext().Hotel.RemoveRange(hotelsForRemoving);
-                    TourBaseEntities.GetContext().SaveChanges();
+                    LilChaChaEntities.GetContext().Hotel.RemoveRange(hotelsForRemoving);
+                    LilChaChaEntities.GetContext().SaveChanges();
                     MessageBox.Show("Данные удалены!");
 
-                    DGridHotels.ItemsSource = TourBaseEntities.GetContext().Hotel.ToList();
+                    DGridHotels.ItemsSource = LilChaChaEntities.GetContext().Hotel.ToList();
                 }
                 catch (Exception ex)
                 {
@@ -64,8 +64,8 @@ namespace WPFStudyPractice
         {
             if(Visibility == Visibility.Visible)
             {
-                TourBaseEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
-                DGridHotels.ItemsSource = TourBaseEntities.GetContext().Hotel.ToList();
+                LilChaChaEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+                DGridHotels.ItemsSource = LilChaChaEntities.GetContext().Hotel.ToList();
             }
         }
     }

@@ -29,7 +29,7 @@ namespace WPFStudyPractice
                 _currentHotel = selectedHotel;
             DataContext = _currentHotel;
 
-            ComboCountries.ItemsSource = TourBaseEntities.GetContext().Country.ToList();
+            ComboCountries.ItemsSource = LilChaChaEntities.GetContext().Country.ToList();
         }
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
@@ -50,10 +50,10 @@ namespace WPFStudyPractice
             }
 
             if (_currentHotel.ID == 0)
-                TourBaseEntities.GetContext().Hotel.Add(_currentHotel);
+                LilChaChaEntities.GetContext().Hotel.Add(_currentHotel);
             try
             {
-                TourBaseEntities.GetContext().SaveChanges();
+                LilChaChaEntities.GetContext().SaveChanges();
                 MessageBox.Show("Информация сохранена!");
             }
             catch (Exception ex)

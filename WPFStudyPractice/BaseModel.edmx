@@ -4,22 +4,22 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище TourBaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище LilChaChaModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Country">
           <Key>
             <PropertyRef Name="Code" />
           </Key>
-          <Property Name="Code" Type="nchar" MaxLength="2" Nullable="false" />
+          <Property Name="Code" Type="char" MaxLength="2" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Hotel">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="CountOfStars" Type="float" Nullable="false" />
-          <Property Name="CountryCode" Type="nchar" MaxLength="2" Nullable="false" />
+          <Property Name="CountryCode" Type="char" MaxLength="2" Nullable="false" />
         </EntityType>
         <EntityType Name="HotelComment">
           <Key>
@@ -61,21 +61,21 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TicketsCount" Type="int" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Description" Type="varchar" MaxLength="150" Nullable="false" />
-          <Property Name="ImagePreveiw" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="Price" Type="decimal" Precision="8" Scale="2" Nullable="false" />
-          <Property Name="IsActual" Type="decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ImagePreveiw" Type="varbinary(max)" Nullable="false" />
+          <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="IsActual" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Type">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Description" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="TypeOfTour">
           <Key>
@@ -169,7 +169,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Хранилище TourBaseModelContainer">
+        <EntityContainer Name="Хранилище LilChaChaModelContainer">
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hotel" EntityType="Self.Hotel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HotelComment" EntityType="Self.HotelComment" Schema="dbo" store:Type="Tables" />
@@ -208,16 +208,15 @@
             <End Role="TypeOfTour" EntitySet="TypeOfTour" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="TourBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="LilChaChaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Country">
           <Key>
             <PropertyRef Name="Code" />
           </Key>
-          <Property Name="Code" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Hotel" Relationship="Self.FK_Hotel_Country" FromRole="Country" ToRole="Hotel" />
         </EntityType>
@@ -225,10 +224,10 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CountOfStars" Type="Double" Nullable="false" />
-          <Property Name="CountryCode" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="CountryCode" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Country" Relationship="Self.FK_Hotel_Country" FromRole="Hotel" ToRole="Country" />
           <NavigationProperty Name="HotelComment" Relationship="Self.FK_HotelComment_Hotel" FromRole="Hotel" ToRole="HotelComment" />
           <NavigationProperty Name="HotelImage" Relationship="Self.FK_HotelImage_Hotel" FromRole="Hotel" ToRole="HotelImage" />
@@ -268,13 +267,13 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TicketsCount" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ImagePreveiw" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Price" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
-          <Property Name="IsActual" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ImagePreveiw" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="IsActual" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Hotel" Relationship="Self.HotelOfTure" FromRole="Tour" ToRole="Hotel" />
           <NavigationProperty Name="Type" Relationship="Self.TypeOfTour" FromRole="Tour" ToRole="Type" />
         </EntityType>
@@ -282,9 +281,9 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Tour" Relationship="Self.TypeOfTour" FromRole="Type" ToRole="Tour" />
         </EntityType>
         <Association Name="FK_Hotel_Country">
@@ -331,7 +330,7 @@
           <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
           <End Role="Type" Type="Self.Type" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="TourBaseEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="LilChaChaEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Country" EntityType="Self.Country" />
           <EntitySet Name="Hotel" EntityType="Self.Hotel" />
           <EntitySet Name="HotelComment" EntityType="Self.HotelComment" />
@@ -365,9 +364,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище TourBaseModelContainer" CdmEntityContainer="TourBaseEntities1">
+        <EntityContainerMapping StorageEntityContainer="Хранилище LilChaChaModelContainer" CdmEntityContainer="LilChaChaEntities">
           <EntitySetMapping Name="Country">
-            <EntityTypeMapping TypeName="TourBaseModel.Country">
+            <EntityTypeMapping TypeName="LilChaChaModel.Country">
               <MappingFragment StoreEntitySet="Country">
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -375,7 +374,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Hotel">
-            <EntityTypeMapping TypeName="TourBaseModel.Hotel">
+            <EntityTypeMapping TypeName="LilChaChaModel.Hotel">
               <MappingFragment StoreEntitySet="Hotel">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -385,7 +384,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HotelComment">
-            <EntityTypeMapping TypeName="TourBaseModel.HotelComment">
+            <EntityTypeMapping TypeName="LilChaChaModel.HotelComment">
               <MappingFragment StoreEntitySet="HotelComment">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="HotelID" ColumnName="HotelID" />
@@ -396,7 +395,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HotelImage">
-            <EntityTypeMapping TypeName="TourBaseModel.HotelImage">
+            <EntityTypeMapping TypeName="LilChaChaModel.HotelImage">
               <MappingFragment StoreEntitySet="HotelImage">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="HotelID" ColumnName="HotelID" />
@@ -405,7 +404,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="TourBaseModel.sysdiagrams">
+            <EntityTypeMapping TypeName="LilChaChaModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -416,7 +415,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tour">
-            <EntityTypeMapping TypeName="TourBaseModel.Tour">
+            <EntityTypeMapping TypeName="LilChaChaModel.Tour">
               <MappingFragment StoreEntitySet="Tour">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="TicketsCount" ColumnName="TicketsCount" />
@@ -429,7 +428,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Type">
-            <EntityTypeMapping TypeName="TourBaseModel.Type">
+            <EntityTypeMapping TypeName="LilChaChaModel.Type">
               <MappingFragment StoreEntitySet="Type">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -437,7 +436,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="HotelOfTure" TypeName="TourBaseModel.HotelOfTure" StoreEntitySet="HotelOfTure">
+          <AssociationSetMapping Name="HotelOfTure" TypeName="LilChaChaModel.HotelOfTure" StoreEntitySet="HotelOfTure">
             <EndProperty Name="Hotel">
               <ScalarProperty Name="ID" ColumnName="HotelID" />
             </EndProperty>
@@ -445,7 +444,7 @@
               <ScalarProperty Name="ID" ColumnName="TourID" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="TypeOfTour" TypeName="TourBaseModel.TypeOfTour" StoreEntitySet="TypeOfTour">
+          <AssociationSetMapping Name="TypeOfTour" TypeName="LilChaChaModel.TypeOfTour" StoreEntitySet="TypeOfTour">
             <EndProperty Name="Tour">
               <ScalarProperty Name="ID" ColumnName="TourID" />
             </EndProperty>

@@ -12,11 +12,14 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
-        <Image Source="Resources/Logo.png" HorizontalAlignment="Left" Margin="35,0,0,0"/>
-        <TextBlock Text="LilChaCha" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-        <Grid Background="#bae3e8" Panel.ZIndex="-2"></Grid>
-        <Grid Grid.Row="2" Background="#445c93"></Grid>
-        <Frame NavigationUIVisibility="Hidden" Grid.Row="1" Name="MainFrame" ContentRendered="MainFrame_ContentRendered"></Frame>
-        <Button Content="Назад" Name="BtnBack" HorizontalAlignment="Right" Click="BtnBack_Click"></Button>
+        <Image Source="Resources/Logo.png" HorizontalAlignment="Left" Margin="5"/>
+        <TextBlock Text="Турагенство ЛилЧаЧа" FontSize="26" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+        <Grid Background="#7CC398" Panel.ZIndex="-2"></Grid>
+        <Grid Grid.Row="2" Background="#153626"></Grid>
+        <Frame Background="#ADCBB5" NavigationUIVisibility="Hidden" Grid.Row="1" Name="MainFrame" ContentRendered="MainFrame_ContentRendered"></Frame>
+        <Button Content="Назад" Name="BtnBack" HorizontalAlignment="Right" Margin="0, 40, 0, 0" Width="150" Click="BtnBack_Click"></Button>
+        <Button Content="Авторизация"  Name="BtnLogin" HorizontalAlignment="Right" Margin="0, 0, 0, 40" Width="150" Click="BtnLogin_Click"></Button>
+        <Button Content="Редактировать тур" Grid.Row="2" Name="BtnEditTour" HorizontalAlignment="Right" Margin="0, 0, 20, 0" Width="150" Click="BtnEditTour_Click"></Button>
+        <Button Content="Редактировать отели" Grid.Row="2" Name="BtnEditHotel" HorizontalAlignment="Left" Margin="20, 0, 0, 0" Width="150" Click="BtnEditHotel_Click"></Button>
     </Grid>
 </Window>

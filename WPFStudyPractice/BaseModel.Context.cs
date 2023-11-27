@@ -12,7 +12,7 @@ namespace WPFStudyPractice
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class LilChaChaEntities : DbContext
     {
         private static LilChaChaEntities _context;
@@ -20,12 +20,12 @@ namespace WPFStudyPractice
             : base("name=LilChaChaEntities")
         {
         }
+
         public static LilChaChaEntities GetContext()
         {
             if (_context == null)
-            {
                 _context = new LilChaChaEntities();
-            }
+
             return _context;
         }
 
@@ -41,5 +41,6 @@ namespace WPFStudyPractice
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Tour> Tour { get; set; }
         public virtual DbSet<Type> Type { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
     }
 }

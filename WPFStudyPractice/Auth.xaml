@@ -1,0 +1,31 @@
+﻿<Page x:Class="WPFStudyPractice.Auth"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WPFStudyPractice"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="400"
+    Title="Auth">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Авторизация" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="Логин" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Row="2" Grid.Column="1"  Text="Пароль" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBox Name="Login" Grid.Row="1" Grid.Column="2"  Height="30" Margin="10"/>
+        <TextBox Name="Password" Grid.Row="2" Grid.Column="2"  Height="30" Margin="10"/>
+        <Button Grid.Row="3" Grid.ColumnSpan="4" Content="Вход" Name="BtnAuth" Click="BtnAuth_Click" />
+    </Grid>
+</Page>

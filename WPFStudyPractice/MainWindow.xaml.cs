@@ -24,16 +24,16 @@ namespace WPFStudyPractice
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.Navigate(new HotelPage());
+            MainFrame.Navigate(new ToursPage());
             Manager.MainFrame = MainFrame;
 
-            ImportTours();
+            //ImportTours();
         }
 
         private void ImportTours()
         {
-            var fileData = File.ReadAllLines(@"C:\Users\tumak\source\repos\WPFStudyPractice\WPFStudyPractice\bin\Туры.txt");
-            var images = Directory.GetFiles(@"C:\Users\tumak\source\repos\WPFStudyPractice\WPFStudyPractice\bin\Туры фото");
+            var fileData = File.ReadAllLines(@"..\Туры.txt");
+            var images = Directory.GetFiles(@"..\Туры фото");
 
             foreach (var line in fileData)
             {
@@ -46,7 +46,7 @@ namespace WPFStudyPractice
                     IsActual = (data[4] == "0") ? false : true
                 };
 
-                foreach (var tourType in data[5].Replace("\"", "").Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries))
+                foreach (var tourType in data[5].Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries))
                 {
                     var currentType = LilChaChaEntities.GetContext().Type.ToList().FirstOrDefault(p => p.Name == tourType);
                     if (currentType != null)
@@ -83,6 +83,50 @@ namespace WPFStudyPractice
             {
                 BtnBack.Visibility= Visibility.Hidden;
             }
+            if (Status.Auth == true)
+                BtnLogin.Content = "Выйти";
+            else
+                BtnLogin.Content = "Войти";
+            if(Status.Auth == false)
+            {
+                BtnEditHotel.Visibility = Visibility.Hidden;
+                BtnEditTour.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                BtnEditHotel.Visibility = Visibility.Visible;
+                if(Status.Admin == true)
+                    BtnEditTour.Visibility = Visibility.Visible;
+                else
+                    BtnEditTour.Visibility = Visibility.Hidden;
+            }
+        }
+        private void BtnLogin_Click(object obj, RoutedEventArgs e)
+        {
+            if (Status.Auth == true)
+            {
+                if (MessageBox.Show($"Вы точно хотите выйти из своей учётной записи ?", "Внимание",
+                MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    Status.Auth = false;
+                    Status.Admin = false;
+                    Status.Login = null;
+                }
+                MainFrame.Navigate(new ListView());
+                MainFrame.Navigate(new ListView());
+            }
+            else
+            {
+                MainFrame.Navigate(new Auth());
+            }
+        }
+        private void BtnEditHotel_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new HotelPage());
+        }
+        private void BtnEditTour_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new ToursPage());
         }
     }
 }
